@@ -1,5 +1,11 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route, NavLink} from 'react-router-dom';
+
+import Home from '../Home/Home';
+import AddUser from '../AddUser/AddUser';
+import CheckIn from '../CheckIn/CheckIn';
+import InFlight from '../InFlight/InFlight';
+
 
 import './Navigation.scss';
 
@@ -10,30 +16,24 @@ export default function Navigation() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <NavLink to="/" exact>Home</NavLink>
                     </li>
                     <li>
-                        <Link to={{
-                            pathname : '/',
-                            hash: 'check-in'
-                        }}>Check-in</Link>
+                        <NavLink to="/check-in">Check-in</NavLink>
                     </li>
                     <li>
-                        <Link to={{
-                            pathname : '/',
-                            hash: 'in-flight'
-                        }}>In-Flight</Link>
+                        <NavLink to="/in-flight">In-Flight</NavLink>
                     </li>
                     <li>
-                        <Link to={{
-                            pathname : '/',
-                            hash: 'admin'
-                        }}>Admin</Link>
+                        <NavLink to="/add-user">Add User</NavLink>
                     </li>
                 </ul>
             </nav>
         </header>
-        <Route path="/" exact render={() => <h1>Home</h1>}/>
+        <Route path="/" exact component={Home}/>
+        <Route path="/check-in" component={CheckIn}/>
+        <Route path="/in-flight" component={InFlight}/>
+        <Route path="/add-user" component={AddUser}/>
     </>
     );
 }

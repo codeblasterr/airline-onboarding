@@ -31,7 +31,8 @@ export const mockData = {
         {
             "number": 88948,
             "name": "Spice jet",
-            "scheduledTime": "09:58"
+            "scheduledTime": "09:58",
+            "ancilaryServices" : ["Insurence", "Airport parking", "Foreign exchange"]
         }
     ]
 }
