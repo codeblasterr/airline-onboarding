@@ -2,3 +2,53 @@
     margin: 0 auto;
     width: 80%;
 }
+
+input {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid blue;
+    width: 100%;
+    outline: none;
+    margin: 5px 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+.card {
+    margin: 20px auto;
+    border-radius: 5px;
+    border: 2px solid #efefef;
+    padding: 10px;
+}
+
+.card-md {
+    width: 80%;
+    @extend .card;
+}
+
+.card-sm {
+    width: 50%;
+    @extend .card;
+}
+
+.btn {
+    padding: 10px;
+    border-radius: 2px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btn-outline {
+    @extend .btn;
+    background-color: white;
+    border: 1px solid blue;
+    color: inherit;
+}
+
+.btn-filled {
+    @extend .btn;
+    background-color: blue;
+    color: white;
+    border: none;
+}
