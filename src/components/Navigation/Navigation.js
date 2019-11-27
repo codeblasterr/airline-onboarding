@@ -13,7 +13,10 @@ export default function Navigation() {
                         <NavLink to="/" exact>Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/flights">Flights</NavLink>
+                        <NavLink to="/flights/check-in">Check-in</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/flights/in-flight">In Flights</NavLink>
                     </li>
                     <li>
                         <NavLink to="/add-user">Add User</NavLink>

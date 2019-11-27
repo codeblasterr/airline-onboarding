@@ -58,10 +58,10 @@ class Home extends Component {
         return data;
     }
     navigateToCheckinPage = flightNo => {
-        this.props.history.push('/flights/check-in');
+        this.props.history.push(`/flights/check-in?flightNo=${flightNo}`);
     }
     navigateToInFlightPage = flightNo => {
-        this.props.history.push('/flights/in-flight');
+        this.props.history.push(`/flights/in-flight?flightNo=${flightNo}`);
     }
     componentDidMount() {
         let data = this.getAirlineData();
