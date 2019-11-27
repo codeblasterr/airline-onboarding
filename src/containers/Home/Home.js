@@ -47,10 +47,14 @@ class Home extends Component {
     getAirlineData = () => {
         let data = mockData && mockData.flightInfo ? mockData.flightInfo : [];
         let date = new Date();
-        let curHours = date.getHours().length === 1 ? '0' + date.getHours() : date.getHours();
-        let curMinutes = date.getMinutes().lenght === 1 ? '0' + date.getMinutes() : date.getMinutes();
+        let curHours = date.getHours() <= 9 ? '0' + date.getHours() : date.getHours();
+        let curMinutes = date.getMinutes() <= 9 ? '0' + date.getMinutes() : date.getMinutes();
         let time = curHours + ':' + curMinutes;
-        data = data.filter(flight => flight.scheduledTime > time);
+        data = data.filter(flight => flight.scheduledTime > time).sort((a,b) => {
+            if(a.scheduledTime > b.scheduledTime) return 1;
+            if(a.scheduledTime < b.scheduledTime) return -1;
+            return 0;
+        });
         return data;
     }
     navigateToCheckinPage = flightNo => {
@@ -75,7 +79,6 @@ class Home extends Component {
                     title = 'Flights'
                     data = {this.state.flights}
                     columns = {column(this.navigateToCheckinPage, this.navigateToInFlightPage)}
-                    pagination
                 />
             </div>
         );

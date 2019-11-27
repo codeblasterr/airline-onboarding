@@ -10,6 +10,12 @@ input {
     width: 100%;
     outline: none;
     margin: 5px 0;
+    &.error {
+        border-bottom: 1px solid red;
+    }
+    &.success {
+        border-bottom: 1px solid green;
+    }
 }
 
 body * {
@@ -51,4 +57,26 @@ body * {
     background-color: blue;
     color: white;
     border: none;
+}
+
+.error {
+    color: red;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-container-col {
+    @extend .flex-container;
+    justify-content: space-around;
+}
+
+.flex-end {
+    @extend .flex-container;
+    justify-content: flex-end;
+}
+
+.container {
+    margin: 10px 0;
 }
