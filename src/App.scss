@@ -6,11 +6,13 @@
 }
 
 main {
-    min-height: 77vh;
+    align-items: stretch;
+    flex-grow: 1;
+    height: 77vh;
 }
 
-input {
-    padding: 10px;
+input, select {
+    padding: 10px 0;
     border: none;
     width: 100%;
     outline: none;

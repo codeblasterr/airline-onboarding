@@ -3,7 +3,7 @@ export const mockData = {
         {
             "number": 88675,
             "name": "Indian airlines",
-            "scheduledTime": "20:45",
+            "scheduledTime": "23:45",
             "ancilaryServices" : ["Insurence", "Airport parking", "Foreign exchange", "International SIM card"],
             "passengerInfo" : [
                 {

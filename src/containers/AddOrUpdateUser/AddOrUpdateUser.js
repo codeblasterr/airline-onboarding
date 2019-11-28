@@ -36,17 +36,25 @@ class AddOrUpdateUser extends Component {
     }
     render () {
         console.log("Users", this.props.flightWithPassenger);
+        let passenger = this.props.flightWithPassenger.passengerInfo || {};
+        let options = [<option value={''}>Select Service</option>];
+        if(this.props.flightWithPassenger && this.props.flightWithPassenger.ancilaryServices && this.props.flightWithPassenger.ancilaryServices.length) {
+            let serviceOptions = this.props.flightWithPassenger.ancilaryServices.map(service => {
+                return <option value={service}>{service}</option>
+            });
+            options.push(serviceOptions);
+        }
+        console.log("Passengers", passenger);
         return (
             <div className="card-md">
                 <h1>Update User</h1>
                 <Formik
                 initialValues={
                     { 
-                        name: '', 
-                        address: '', 
-                        seatNo: '', 
-                        checkedIn: false, 
-                        passportNo: '' 
+                        name: passenger.name ? passenger.name : '', 
+                        address: passenger.address || '', 
+                        seatNo: passenger.seatNo || '',  
+                        passportNo: passenger.passport || '' 
                     }
                 }
                 validationSchema={Yup.object({
@@ -108,6 +116,17 @@ class AddOrUpdateUser extends Component {
                                     </ErrorMessage>
                                 </div>
                             </div>
+                            <div>
+                                <label htmlFor="ancilaryServices">Services</label>
+                                <Field as="select" className={getValidationCls(formProps.errors, 'ancilaryServices')} name="ancilaryServices" >
+                                    {options}
+                                </Field>
+                                <ErrorMessage name="ancilaryServices">
+                                    {
+                                        msg => <div className="error">{msg}</div>
+                                    }
+                                </ErrorMessage>
+                            </div>
 
                             <div className="container flex-end">
                                 <button className="btn-filled" type="submit">Submit</button>
@@ -115,6 +134,7 @@ class AddOrUpdateUser extends Component {
                         </Form>
                     );
                 }}
+                enableReinitialize={true}
                 />
             </div>
         );
