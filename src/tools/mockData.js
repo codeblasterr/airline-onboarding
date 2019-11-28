@@ -15,6 +15,7 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
+                    "ancilaryServices" : ["Insurence", "Airport parking"],
                     "address": {
                         "flatNo": 158,
                         "addressLine1": "",
@@ -34,6 +35,7 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
+                    "ancilaryServices" : ["Insurence", "Foreign Exchange"],
                     "address": {
                         "flatNo": 156,
                         "addressLine1": "",
@@ -52,7 +54,8 @@ export const mockData = {
                     "specialMeals": true,
                     "withInfant": false,
                     "requireWheelChair": false,
-                    "checkedIn": false,
+                    "checkedIn": true,
+                    "ancilaryServices" : [],
                     "address": {
                         "flatNo": 157,
                         "addressLine1": "",
@@ -80,6 +83,7 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
+                    "ancilaryServices" : ["Insurence", "Airport parking"],
                     "address": {
                         "flatNo": 158,
                         "addressLine1": "",
@@ -99,6 +103,7 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
+                    "ancilaryServices" : ["Foreign Exchange", "Airport parking"],
                     "address": {
                         "flatNo": 155,
                         "addressLine1": "",
@@ -117,7 +122,8 @@ export const mockData = {
                     "specialMeals": true,
                     "withInfant": false,
                     "requireWheelChair": false,
-                    "checkedIn": false,
+                    "checkedIn": true,
+                    "ancilaryServices" : ["Foreign Exchange", "Airport parking"],
                     "address": {
                         "flatNo": 150,
                         "addressLine1": "",

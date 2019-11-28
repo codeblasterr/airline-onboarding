@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import passengerReduser from "./stores/reducers/Passengers";
+import passengerReduser from "./stores/reducers/Flight";
 import flightsReucer from "./stores/reducers/Flights";
 
 const rootReducer = combineReducers({

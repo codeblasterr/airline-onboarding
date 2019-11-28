@@ -1,4 +1,5 @@
 const initialVals = {
+  flightName: '',
   passengers: []
 };
 
@@ -6,7 +7,7 @@ const passengersReducer = (state = initialVals, action) => {
   switch (action.type) {
     case "PASSENGER_LIST":
       return {
-        passengers: [...action.payLoad]
+        ...action.payLoad
       };
     default:
       return state;

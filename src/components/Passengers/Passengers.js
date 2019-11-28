@@ -4,7 +4,19 @@ import Passenger from './Passenger/Passenger';
 import './Passengers.scss'
 
 const passengers = (props) => {
-    let passengers = props.passengers.map(passenger => <Passenger key={passenger.id} passenger={{...passenger}} />)
+    console.log("Props",props)
+    let passengerList = [];
+    if(props.checkIn) {
+        passengerList = [...props.passengers];
+    } else {
+        passengerList = props.passengers.filter(passenger => passenger.checkedIn === true);
+    }
+    console.log("passengerList", passengerList);
+    let passengers = [];
+    if(passengerList.length)
+        passengers = passengerList.map(passenger =>< Passenger checkIn={props.checkIn} key={passenger.id} passenger={{...passenger}} /> )
+    else
+        passengers = <div>No passengers available in the list to display.</div>
     return (
         <div className="pasngr-list-cont">
             {passengers}

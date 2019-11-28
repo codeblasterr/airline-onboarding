@@ -5,7 +5,7 @@ import Navigation from  './components/Navigation/Navigation';
 import Home from './containers/Home/Home';
 import AddUser from './components/AddUser/AddUser';
 import CheckIn from './containers/CheckIn/CheckIn';
-import InFlight from './components/InFlight/InFlight';
+import InFlight from './containers/InFlight/InFlight';
 import Footer from './components/Footer/Footer';
 
 import './App.scss';

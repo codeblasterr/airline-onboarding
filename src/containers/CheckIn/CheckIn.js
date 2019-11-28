@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Passengers from "./../../components/Passengers/Passengers";
-import {passengerList} from '../../stores/actions/Passengers'
+import {flight} from '../../stores/actions/Flight'
 
 class CheckIn extends Component {
   getFlightNo() {
@@ -22,16 +22,12 @@ class CheckIn extends Component {
   componentDidMount() {
     let flightNo = this.getFlightNo();
     this.props.setPassengerList(flightNo);
-    /*this.setState({
-      ...this.state,
-      passengers
-    });*/
   }
   render() {
     return (
       <>
         <h1>Passengers</h1>
-        <Passengers passengers={[...this.props.pasengrs]} />
+        <Passengers checkIn={true} passengers={[...this.props.pasengrs]} />
       </>
     );
   }
@@ -45,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPassengerList: (flightNo) => dispatch(passengerList(flightNo))
+    setPassengerList: (flightNo) => dispatch(flight(flightNo))
   };
 };
 
