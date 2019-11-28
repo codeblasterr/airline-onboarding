@@ -18,3 +18,21 @@ export const flight = (flightNo) => {
         }
     }
 }
+
+export const getFlightWithPassenger = (flightId, passengerId) => {
+    let flight = mockData.flightInfo.filter(flight => flight.number === parseInt(flightId));
+    let passenger = flight[0].passengerInfo.filter(passenger => passenger.id === parseInt(passengerId));
+    delete flight[0].passengerInfo;
+    return {
+        ...flight[0],
+        passengerInfo: {...passenger[0]}
+    }
+}
+
+export const setFlightWithPassenger = (flightId, passengerId) => {
+    let info = getFlightWithPassenger(flightId, passengerId);
+    return {
+        type: "SET_FLIGHT_WITH_PASSENGER",
+        payLoad: {...info}
+    }
+}

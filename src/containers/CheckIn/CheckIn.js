@@ -27,7 +27,7 @@ class CheckIn extends Component {
     return (
       <>
         <h1>Passengers</h1>
-        <Passengers checkIn={true} passengers={[...this.props.pasengrs]} />
+        <Passengers {...this.props} checkIn={true} passengers={[...this.props.pasengrs]} />
       </>
     );
   }

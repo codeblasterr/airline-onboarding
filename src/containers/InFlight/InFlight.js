@@ -27,7 +27,7 @@ class InFlight extends Component {
         return (
             <>
                 <h1>Passengers</h1>
-                <Passengers checkIn={false} passengers={[...this.props.pasengrs]} />
+                <Passengers {...this.props} checkIn={false} passengers={[...this.props.pasengrs]} flightNo={this.getFlightNo()}/>
             </>
         );
     }

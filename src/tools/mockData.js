@@ -15,16 +15,10 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
-                    "ancilaryServices" : ["Insurence", "Airport parking"],
-                    "address": {
-                        "flatNo": 158,
-                        "addressLine1": "",
-                        "addressLine2": "",
-                        "city": "",
-                        "state": "",
-                        "country": "",
-                        "zipcode" : ""
-                    }
+                    "ancilaryServices" : "Airport parking",
+                    "address": "155",
+                    "passport": "",
+                    "shoppingItem": ""
                 },
                 {
                     "id": 125,
@@ -35,16 +29,10 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
-                    "ancilaryServices" : ["Insurence", "Foreign Exchange"],
-                    "address": {
-                        "flatNo": 156,
-                        "addressLine1": "",
-                        "addressLine2": "",
-                        "city": "",
-                        "state": "",
-                        "country": "",
-                        "zipcode" : ""
-                    }
+                    "ancilaryServices" : "Insurence",
+                    "address": "156",
+                    "passport": "",
+                    "shoppingItem": ""
                 },
                 {
                     "id": 124,
@@ -55,16 +43,10 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": true,
-                    "ancilaryServices" : [],
-                    "address": {
-                        "flatNo": 157,
-                        "addressLine1": "",
-                        "addressLine2": "",
-                        "city": "",
-                        "state": "",
-                        "country": "",
-                        "zipcode" : ""
-                    }
+                    "ancilaryServices" : "",
+                    "address": "157",
+                    "passport": "",
+                    "shoppingItem": ""
                 }
             ]
         },
@@ -83,16 +65,10 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
-                    "ancilaryServices" : ["Insurence", "Airport parking"],
-                    "address": {
-                        "flatNo": 158,
-                        "addressLine1": "",
-                        "addressLine2": "",
-                        "city": "",
-                        "state": "",
-                        "country": "",
-                        "zipcode" : ""
-                    }
+                    "ancilaryServices" : "Insurence",
+                    "address": "158",
+                    "passport": "",
+                    "shoppingItem": ""
                 },
                 {
                     "id": 124,
@@ -103,16 +79,10 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": false,
-                    "ancilaryServices" : ["Foreign Exchange", "Airport parking"],
-                    "address": {
-                        "flatNo": 155,
-                        "addressLine1": "",
-                        "addressLine2": "",
-                        "city": "",
-                        "state": "",
-                        "country": "",
-                        "zipcode" : ""
-                    }
+                    "ancilaryServices" : "Airport parking",
+                    "address": "155",
+                    "passport": "",
+                    "shoppingItem": ""
                 },
                 {
                     "id": 129,
@@ -123,16 +93,10 @@ export const mockData = {
                     "withInfant": false,
                     "requireWheelChair": false,
                     "checkedIn": true,
-                    "ancilaryServices" : ["Foreign Exchange", "Airport parking"],
-                    "address": {
-                        "flatNo": 150,
-                        "addressLine1": "",
-                        "addressLine2": "",
-                        "city": "",
-                        "state": "",
-                        "country": "",
-                        "zipcode" : ""
-                    }
+                    "ancilaryServices" : "Foreign Exchange",
+                    "address": "150",
+                    "passport": "",
+                    "shoppingItem": ""
                 }
             ]
         }

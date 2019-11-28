@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    align-items: center;
+    &.multiElem {
+        justify-content: space-between;
+    }
+}
+
+.container-col {
+    flex-basis: 45%;
+}
+
+.checkBox {
+    label, input {
+        flex: 1;
+    }
+}
+

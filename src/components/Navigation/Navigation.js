@@ -19,7 +19,7 @@ export default function Navigation() {
                         <NavLink to="/flights/in-flight">In Flights</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/add-user">Add User</NavLink>
+                        <NavLink to="/add-or-update-user">Add Or Update User</NavLink>
                     </li>
                 </ul>
             </nav>

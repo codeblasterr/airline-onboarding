@@ -14,7 +14,7 @@ const passengers = (props) => {
     console.log("passengerList", passengerList);
     let passengers = [];
     if(passengerList.length)
-        passengers = passengerList.map(passenger =>< Passenger checkIn={props.checkIn} key={passenger.id} passenger={{...passenger}} /> )
+        passengers = passengerList.map(passenger =>< Passenger {...props} checkIn={props.checkIn} key={passenger.id} passenger={{...passenger}} flightNo={props.flightNo}/> )
     else
         passengers = <div>No passengers available in the list to display.</div>
     return (

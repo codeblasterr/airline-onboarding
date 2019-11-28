@@ -2,9 +2,11 @@ import React from 'react';
 
 import Batch from './../../Batch/Batch';
 
+import './../../../App.scss';
 import './Passenger.scss';
 
 const passenger = (props) => {
+    console.log("Props", props);
     return (
         <div className="pasngr-item">
             <div className="psngr-info-cont">
@@ -32,7 +34,7 @@ const passenger = (props) => {
                 <div className="psngr-info-cont">
                     <div className="psngr-lable">Ancilary services:</div> 
                     <div className="psngr-content">
-                        {props.passenger.ancilaryServices.join(',')}
+                        {props.passenger.ancilaryServices}
                     </div>
                 </div> </> : <div className="psngr-info-cont">
                     <div className="psngr-lable">Opted Special Meal:</div> 
@@ -47,6 +49,15 @@ const passenger = (props) => {
                     <Batch status={props.passenger.checkedIn} />
                 </div>
             </div>
+            {!props.checkIn ? 
+                <div className="container flex-end">
+                    <button className="btn-filled" onClick={
+                        () => {
+                            props.history.push(`/add-or-update-user?flightNo=${props.flightNo}&passengerId=${props.passenger.id}`)
+                        }
+                    }>Edit</button>
+                </div> : ""
+            }
         </div>
     );
 }
