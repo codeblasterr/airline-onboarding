@@ -6,6 +6,7 @@ import Home from './containers/Home/Home';
 import AddUser from './components/AddUser/AddUser';
 import CheckIn from './containers/CheckIn/CheckIn';
 import InFlight from './components/InFlight/InFlight';
+import Footer from './components/Footer/Footer';
 
 import './App.scss';
 
@@ -15,10 +16,13 @@ function App() {
     <Router>
       <div className="App">
         <Navigation />
-        <Route path="/" exact component={Home}/>
-        <Route path="/flights/check-in" component={CheckIn}/>
-        <Route path="/flights/in-flight" component={InFlight}/>
-        <Route path="/add-user" component={AddUser}/>
+        <main>
+          <Route path="/" exact component={Home}/>
+          <Route path="/flights/check-in" component={CheckIn}/>
+          <Route path="/flights/in-flight" component={InFlight}/>
+          <Route path="/add-user" component={AddUser}/>
+        </main>
+        <Footer/>
       </div>
     </Router>
   );

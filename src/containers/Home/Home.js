@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import DataTable, {memoize} from 'react-data-table-component';
+import {connect} from 'react-redux';
 
-import {mockData} from './../../tools/mockData';
+import {flightList} from './../../stores/actions/Flights';
 
 import './../../App.scss'
 
@@ -41,22 +42,7 @@ const column = memoize( (navigateToCheckinPage, navigateToInFlightPage) => [
 ]);
 
 class Home extends Component {
-    state =  {
-        flights : []
-    }
-    getAirlineData = () => {
-        let data = mockData && mockData.flightInfo ? mockData.flightInfo : [];
-        let date = new Date();
-        let curHours = date.getHours() <= 9 ? '0' + date.getHours() : date.getHours();
-        let curMinutes = date.getMinutes() <= 9 ? '0' + date.getMinutes() : date.getMinutes();
-        let time = curHours + ':' + curMinutes;
-        data = data.filter(flight => flight.scheduledTime > time).sort((a,b) => {
-            if(a.scheduledTime > b.scheduledTime) return 1;
-            if(a.scheduledTime < b.scheduledTime) return -1;
-            return 0;
-        });
-        return data;
-    }
+       
     navigateToCheckinPage = flightNo => {
         this.props.history.push(`/flights/check-in?flightNo=${flightNo}`);
     }
@@ -64,12 +50,9 @@ class Home extends Component {
         this.props.history.push(`/flights/in-flight?flightNo=${flightNo}`);
     }
     componentDidMount() {
-        let data = this.getAirlineData();
-        console.log(data);
-        
+        this.props.setFlightList();        
         this.setState({
-            ...this.state,
-            flights: [...data]
+            flights: [this.props.flits]
         })
     }
     render() {
@@ -77,7 +60,7 @@ class Home extends Component {
             <div className="card">
                 <DataTable 
                     title = 'Flights'
-                    data = {this.state.flights}
+                    data = {this.props.flits}
                     columns = {column(this.navigateToCheckinPage, this.navigateToInFlightPage)}
                 />
             </div>
@@ -85,4 +68,16 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        flits: state.flts.flights
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setFlightList: () => dispatch(flightList())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

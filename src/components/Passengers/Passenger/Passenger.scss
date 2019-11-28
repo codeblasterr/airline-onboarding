@@ -1,0 +1,18 @@
+.pasngr-item {
+    flex-basis: 30%;
+    border-radius: 5px;
+    border: 2px solid #efefef;
+    padding: 10px;
+}
+
+.psngr-lable, .psngr-content {
+    margin: 5px;
+    flex:1;
+}
+.psngr-lable{
+    font-weight: bold;
+}
+.psngr-info-cont {
+    display: flex;
+}
+

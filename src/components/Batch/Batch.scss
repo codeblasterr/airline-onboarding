@@ -1,0 +1,16 @@
+.batch {
+    border-radius: 2px;
+    color: white;
+    padding: 5px;
+    font-size: 75%;
+}
+
+.batch-success {
+    @extend .batch;
+    background-color: lightgreen;
+}
+
+.batch-failiure {
+    @extend .batch;
+    background-color: red;
+}

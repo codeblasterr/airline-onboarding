@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Passengers from "./../../components/Passengers/Passengers";
-
-import { mockData } from "./../../tools/mockData";
+import {passengerList} from '../../stores/actions/Passengers'
 
 class CheckIn extends Component {
-  state = {
-    passengers: []
-  };
   getFlightNo() {
     let search = this.props.location.search || "{}";
     let searchObj = JSON.parse(
@@ -24,11 +20,12 @@ class CheckIn extends Component {
     return searchObj.flightNo || "";
   }
   componentDidMount() {
-    let passengers = this.getPassengers(this.getFlightNo());
-    this.setState({
+    let flightNo = this.getFlightNo();
+    this.props.setPassengerList(flightNo);
+    /*this.setState({
       ...this.state,
       passengers
-    });
+    });*/
   }
   render() {
     return (
@@ -42,13 +39,13 @@ class CheckIn extends Component {
 
 const mapStateToProps = state => {
   return {
-    pasengrs: state.passengers
+    pasengrs: state.pasngrs.passengers
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPassengerList: () => dispatch({ type: "PASSENGER_LIST" })
+    setPassengerList: (flightNo) => dispatch(passengerList(flightNo))
   };
 };
 

@@ -92,7 +92,7 @@ export const mockData = {
                 },
                 {
                     "id": 124,
-                    "name": "Xavi",
+                    "name": "Bernard",
                     "Age": 25,
                     "seatNo": "c4",
                     "specialMeals": true,
@@ -101,6 +101,25 @@ export const mockData = {
                     "checkedIn": false,
                     "address": {
                         "flatNo": 155,
+                        "addressLine1": "",
+                        "addressLine2": "",
+                        "city": "",
+                        "state": "",
+                        "country": "",
+                        "zipcode" : ""
+                    }
+                },
+                {
+                    "id": 129,
+                    "name": "Raj",
+                    "Age": 25,
+                    "seatNo": "c9",
+                    "specialMeals": true,
+                    "withInfant": false,
+                    "requireWheelChair": false,
+                    "checkedIn": false,
+                    "address": {
+                        "flatNo": 150,
                         "addressLine1": "",
                         "addressLine2": "",
                         "city": "",
