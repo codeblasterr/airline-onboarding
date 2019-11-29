@@ -20,6 +20,12 @@ class CheckIn extends Component {
     console.log("Flight No:", searchObj);
     return searchObj.flightNo || "";
   }
+  handleChange = (event) => {
+    let value = event.target.value;
+    let flightNo = this.getFlightNo();
+    this.props.setPassengerList(flightNo, value);
+    console.log(value);
+  }
   componentDidMount() {
     authCheck(this.props.isSignedIn, this.props.histort);
     let flightNo = this.getFlightNo();
@@ -29,6 +35,12 @@ class CheckIn extends Component {
     return (
       <>
         <h1>Passengers</h1>
+        <select name="passengerType" onChange={this.handleChange}>
+          <option value="">Select Filter Type</option>
+          <option value="checkedIn">Checked In</option>
+          <option value="wheelChair">Required Wheel Chair</option>
+          <option value="withInfant">With Infants</option>
+        </select>
         <Passengers {...this.props} checkIn={true} passengers={[...this.props.pasengrs]} />
       </>
     );
@@ -44,7 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPassengerList: (flightNo) => dispatch(flight(flightNo))
+    setPassengerList: (flightNo, filterParam) => dispatch(flight(flightNo, filterParam))
   };
 };
 

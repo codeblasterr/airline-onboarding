@@ -17,6 +17,7 @@ input, select {
     width: 100%;
     outline: none;
     margin: 5px 0;
+    border-bottom: 2px solid blue;
     &.error {
         border-bottom: 1px solid red;
     }
