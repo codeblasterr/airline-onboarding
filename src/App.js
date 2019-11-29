@@ -8,6 +8,8 @@ import CheckIn from './containers/CheckIn/CheckIn';
 import InFlight from './containers/InFlight/InFlight';
 import Footer from './components/Footer/Footer';
 
+import ErrorBoundary from './containers/ErrorBoundary/ErrorBoundary'; 
+
 import './App.scss';
 
 
@@ -16,12 +18,14 @@ function App() {
     <Router>
       <div className="App">
         <Navigation />
-        <main>
-          <Route path="/" exact component={Home}/>
-          <Route path="/flights/check-in" component={CheckIn}/>
-          <Route path="/flights/in-flight" component={InFlight}/>
-          <Route path="/add-or-update-user" component={AddOrUpdateUser}/>
-        </main>
+        <ErrorBoundary>
+          <main>
+            <Route path="/" exact component={Home}/>
+            <Route path="/flights/check-in" component={CheckIn}/>
+            <Route path="/flights/in-flight" component={InFlight}/>
+            <Route path="/add-or-update-user" component={AddOrUpdateUser}/>
+          </main>
+        </ErrorBoundary>
         <Footer/>
       </div>
     </Router>

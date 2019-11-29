@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage, getIn } from 'formik';
 import * as Yup from 'yup';
 import {connect} from 'react-redux';
 
-import {setFlightWithPassenger} from './../../stores/actions/Flight';
+import {setFlightWithPassenger, updatePassenger} from './../../stores/actions/Flight';
 
 import './../../App.scss';
 import './AddOrUpdateUser.scss';
@@ -35,8 +35,7 @@ class AddOrUpdateUser extends Component {
         this.props.setFlightWithPassenger(params.flightNo, params.passengerId);
     }
     render () {
-        console.log("Users", this.props.flightWithPassenger);
-        let passenger = this.props.flightWithPassenger.passengerInfo || {};
+        let passenger = this.props.flightWithPassenger && this.props.flightWithPassenger.passengerInfo && this.props.flightWithPassenger.passengerInfo[0] ? this.props.flightWithPassenger.passengerInfo[0] : {};
         let options = [<option value={''}>Select Service</option>];
         if(this.props.flightWithPassenger && this.props.flightWithPassenger.ancilaryServices && this.props.flightWithPassenger.ancilaryServices.length) {
             let serviceOptions = this.props.flightWithPassenger.ancilaryServices.map(service => {
@@ -44,7 +43,6 @@ class AddOrUpdateUser extends Component {
             });
             options.push(serviceOptions);
         }
-        console.log("Passengers", passenger);
         return (
             <div className="card-md">
                 <h1>Update User</h1>
@@ -54,7 +52,9 @@ class AddOrUpdateUser extends Component {
                         name: passenger.name ? passenger.name : '', 
                         address: passenger.address || '', 
                         seatNo: passenger.seatNo || '',  
-                        passportNo: passenger.passport || '' 
+                        passportNo: passenger.passport || '',
+                        ancilaryServices: passenger.ancilaryServices || '',
+                        specialMeals: passenger.specialMeals || false
                     }
                 }
                 validationSchema={Yup.object({
@@ -65,17 +65,19 @@ class AddOrUpdateUser extends Component {
                     .required('*Required'),
                     seatNo: Yup.string()
                     .required('*Required'),
-                    checkInStatus: Yup.bool()
-                    .required("*Required"),
-                    passportNo: Yup.string()
+                    passportNo: Yup.string(),
+                    ancilaryServices: Yup.string(),
+                    specialMeals: Yup.bool()
                 })}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    let params = this.getQueryParams();
+                    updatePassenger(params.flightNo, params.passengerId, values);
+                    //this.props.history.push(`/in-flight?flightNo=${params.flightNo}&passengerId=${params.passengerId}`);
                     setSubmitting(false);
-                    }, 400);
                 }}
-                render={ formProps => {
+                enableReinitialize={true}
+                >
+                    { formProps => {
                     return (
                         <Form>
                             <div className="name-col">
@@ -118,24 +120,29 @@ class AddOrUpdateUser extends Component {
                             </div>
                             <div>
                                 <label htmlFor="ancilaryServices">Services</label>
-                                <Field as="select" className={getValidationCls(formProps.errors, 'ancilaryServices')} name="ancilaryServices" >
-                                    {options}
-                                </Field>
-                                <ErrorMessage name="ancilaryServices">
+                                <Field className={getValidationCls(formProps.errors, 'ancilaryServices')} name="ancilaryServices" type="text" />
+                                 <ErrorMessage name="ancilaryServices">
                                     {
                                         msg => <div className="error">{msg}</div>
                                     }
                                 </ErrorMessage>
                             </div>
-
+                            <div className="container">
+                                <label htmlFor="specialMeals">Services</label>
+                                <Field className={getValidationCls(formProps.errors, 'specialMeals')} name="specialMeals" type="checkbox" />
+                                 <ErrorMessage name="specialMeals">
+                                    {
+                                        msg => <div className="error">{msg}</div>
+                                    }
+                                </ErrorMessage>
+                            </div>
                             <div className="container flex-end">
                                 <button className="btn-filled" type="submit">Submit</button>
                             </div>
                         </Form>
                     );
                 }}
-                enableReinitialize={true}
-                />
+                </Formik>
             </div>
         );
     }

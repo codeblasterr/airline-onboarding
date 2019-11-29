@@ -12,6 +12,11 @@ const passengersReducer = (state = initialVals, action) => {
         ...action.payLoad
       };
     case "SET_FLIGHT_WITH_PASSENGER":
+        return {
+          ...state,
+          flightWithPassenger : {...action.payLoad}
+        }
+    case "UPDATE_PASSENGER":
       return {
         ...state,
         flightWithPassenger : {...action.payLoad}
