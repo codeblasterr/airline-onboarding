@@ -7,6 +7,7 @@ import AddOrUpdateUser from './containers/AddOrUpdateUser/AddOrUpdateUser';
 import CheckIn from './containers/CheckIn/CheckIn';
 import InFlight from './containers/InFlight/InFlight';
 import Footer from './components/Footer/Footer';
+import Login from './containers/Login/Login';
 
 import ErrorBoundary from './containers/ErrorBoundary/ErrorBoundary'; 
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/flights/check-in" component={CheckIn}/>
             <Route path="/flights/in-flight" component={InFlight}/>
             <Route path="/add-or-update-user" component={AddOrUpdateUser}/>
+            <Route path="/login" component={Login} />
           </main>
         </ErrorBoundary>
         <Footer/>

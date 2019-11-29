@@ -9,10 +9,12 @@ import * as serviceWorker from "./serviceWorker";
 
 import passengerReduser from "./stores/reducers/Flight";
 import flightsReucer from "./stores/reducers/Flights";
+import authReducer from "./stores/reducers/Login";
 
 const rootReducer = combineReducers({
   flts: flightsReucer,
-  pasngrs: passengerReduser
+  pasngrs: passengerReduser,
+  auth: authReducer
 });
 
 const store = createStore(rootReducer);

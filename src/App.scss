@@ -47,6 +47,10 @@ body * {
 .card-sm {
     width: 50%;
     @extend .card;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .btn {
