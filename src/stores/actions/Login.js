@@ -1,7 +1,6 @@
 export const doLogin = () => {
-    let isSignedIn = false;
     return {
-        type: "SIGNEDIN",
-        payLoad: isSignedIn
+        type: "SIGNIN",
+        payLoad: true
     }
 }

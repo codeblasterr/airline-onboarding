@@ -3,6 +3,7 @@ import DataTable, {memoize} from 'react-data-table-component';
 import {connect} from 'react-redux';
 
 import {flightList} from './../../stores/actions/Flights';
+import {authCheck} from './../../utils/util';
 
 import './../../App.scss'
 
@@ -50,6 +51,7 @@ class Home extends Component {
         this.props.history.push(`/flights/in-flight?flightNo=${flightNo}`);
     }
     componentDidMount() {
+        authCheck(this.props.isSignedIn, this.props.history);
         this.props.setFlightList();        
         this.setState({
             flights: [this.props.flits]
@@ -70,7 +72,8 @@ class Home extends Component {
 
 const mapStateToProps = state => {
     return {
-        flits: state.flts.flights
+        flits: state.flts.flights,
+        isSignedIn: state.auth.isSignedIn
     };
 };
 

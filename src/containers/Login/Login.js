@@ -9,6 +9,14 @@ import './Login.scss';
 class Login extends Component {
     responseGoogle = response => {
         console.log(response);
+        if(response && response.accessToken) {
+          this.props.doGoogleLogin();
+          this.props.history.push('/');
+        }
+    }
+    componentDidMount() {
+      if(this.props.isSignedIn)
+        this.props.history.push('/');
     }
     render() {
         return (

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Passengers from "./../../components/Passengers/Passengers";
-import {flight} from '../../stores/actions/Flight'
+import {flight} from '../../stores/actions/Flight';
+import {authCheck} from './../../utils/util';
 
 class CheckIn extends Component {
   getFlightNo() {
@@ -20,6 +21,7 @@ class CheckIn extends Component {
     return searchObj.flightNo || "";
   }
   componentDidMount() {
+    authCheck(this.props.isSignedIn, this.props.histort);
     let flightNo = this.getFlightNo();
     this.props.setPassengerList(flightNo);
   }
@@ -35,7 +37,8 @@ class CheckIn extends Component {
 
 const mapStateToProps = state => {
   return {
-    pasengrs: state.pasngrs.passengers
+    pasengrs: state.pasngrs.passengers,
+    isSignedIn: state.auth.isSignedIn
   };
 };
 

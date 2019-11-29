@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import {connect} from 'react-redux';
 
 import {setFlightWithPassenger, updatePassenger} from './../../stores/actions/Flight';
+import {authCheck} from './../../utils/util';
 
 import './../../App.scss';
 import './AddOrUpdateUser.scss';
@@ -31,6 +32,7 @@ class AddOrUpdateUser extends Component {
         return searchObj || "";
       }
     componentDidMount() {
+        authCheck(this.props.isSignedIn, this.props.history);
         let params = this.getQueryParams();
         this.props.setFlightWithPassenger(params.flightNo, params.passengerId);
     }
@@ -72,7 +74,7 @@ class AddOrUpdateUser extends Component {
                 onSubmit={(values, { setSubmitting }) => {
                     let params = this.getQueryParams();
                     updatePassenger(params.flightNo, params.passengerId, values);
-                    //this.props.history.push(`/in-flight?flightNo=${params.flightNo}&passengerId=${params.passengerId}`);
+                    this.props.history.push(`/flights/in-flight?flightNo=${params.flightNo}&passengerId=${params.passengerId}`);
                     setSubmitting(false);
                 }}
                 enableReinitialize={true}
@@ -127,8 +129,8 @@ class AddOrUpdateUser extends Component {
                                     }
                                 </ErrorMessage>
                             </div>
-                            <div className="container">
-                                <label htmlFor="specialMeals">Services</label>
+                            <div className="specialMeal-cont">
+                                <label htmlFor="specialMeals">Special Meals</label>
                                 <Field className={getValidationCls(formProps.errors, 'specialMeals')} name="specialMeals" type="checkbox" />
                                  <ErrorMessage name="specialMeals">
                                     {
@@ -150,7 +152,8 @@ class AddOrUpdateUser extends Component {
 
 const mapStateToProps = state => {
     return {
-      flightWithPassenger: state.pasngrs.flightWithPassenger
+      flightWithPassenger: state.pasngrs.flightWithPassenger,
+      isSignedIn: state.auth.isSignedIn
     };
   };
   
