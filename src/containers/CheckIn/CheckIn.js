@@ -2,30 +2,32 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Passengers from "./../../components/Passengers/Passengers";
-import {flight} from '../../stores/actions/Flight';
-import {authCheck} from './../../utils/util';
+import { flight } from "../../stores/actions/Flight";
+import { authCheck } from "./../../utils/util";
 
 class CheckIn extends Component {
   getFlightNo() {
     let search = this.props.location.search || "{}";
-    let searchObj = JSON.parse(
-      '{"' +
-        decodeURI(search)
-          .replace("?", "")
-          .replace(/"/g, '\\"')
-          .replace(/&/g, '","')
-          .replace(/=/g, '":"') +
-        '"}'
-    );
+    let searchObj = search
+      ? JSON.parse(
+          '{"' +
+            decodeURI(search)
+              .replace("?", "")
+              .replace(/"/g, '\\"')
+              .replace(/&/g, '","')
+              .replace(/=/g, '":"') +
+            '"}'
+        )
+      : {};
     console.log("Flight No:", searchObj);
     return searchObj.flightNo || "";
   }
-  handleChange = (event) => {
+  handleChange = event => {
     let value = event.target.value;
     let flightNo = this.getFlightNo();
     this.props.setPassengerList(flightNo, value);
     console.log(value);
-  }
+  };
   componentDidMount() {
     authCheck(this.props.isSignedIn, this.props.histort);
     let flightNo = this.getFlightNo();
@@ -41,7 +43,11 @@ class CheckIn extends Component {
           <option value="wheelChair">Required Wheel Chair</option>
           <option value="withInfant">With Infants</option>
         </select>
-        <Passengers {...this.props} checkIn={true} passengers={[...this.props.pasengrs]} />
+        <Passengers
+          {...this.props}
+          checkIn={true}
+          passengers={[...this.props.pasengrs]}
+        />
       </>
     );
   }
@@ -56,7 +62,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPassengerList: (flightNo, filterParam) => dispatch(flight(flightNo, filterParam))
+    setPassengerList: (flightNo, filterParam) =>
+      dispatch(flight(flightNo, filterParam))
   };
 };
 
