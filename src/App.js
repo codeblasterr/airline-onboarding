@@ -11,11 +11,11 @@ import Login from "./containers/Login/Login";
 
 import "./App.scss";
 
-function App() {
+const App = props => {
   return (
     <Router>
       <div className="App">
-        <Navigation />
+        <Navigation {...this.props} />
         <main>
           <Route path="/" exact component={Home} />
           <Route path="/flights/check-in" component={CheckIn} />
@@ -27,6 +27,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
