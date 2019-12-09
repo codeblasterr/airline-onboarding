@@ -6,7 +6,8 @@ import { getSearchParams } from "./../../utils/util";
 import "./Navigation.scss";
 
 const Navigation = props => {
-  let search = getSearchParams();
+  let searchParams = props.location && props.location.search ? props.location.search : "";
+  let search = getSearchParams(searchParams);
   let additionalMenu = null;
   if (search.flightNo && search.passengerId) {
     additionalMenu = (

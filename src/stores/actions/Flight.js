@@ -53,13 +53,6 @@ export const flight = (flightNo, filterParam) => {
     let flight = getFlight(flightNo);
     let passengers = null;
     if(filterParam) {
-        /*if(filterParam === "checkedIn") {
-            passengers = flight.passengerInfo.filter(passenger => passenger.checkedIn === true)
-        } else if(filterParam === "wheelChair") {
-            passengers = flight.passengerInfo.filter(passenger => passenger.requireWheelChair === true)
-        } else if(filterParam === "withInfant") {
-            passengers = flight.passengerInfo.filter(passenger => passenger.withInfant === true)
-        }*/
         switch(filterParam) {
             case "checkedIn":
                 passengers = flight.passengerInfo.filter(passenger => passenger.checkedIn === true)
@@ -70,12 +63,16 @@ export const flight = (flightNo, filterParam) => {
             case "withInfant":
                 passengers = flight.passengerInfo.filter(passenger => passenger.withInfant === true)
                 break;
+            default:
+                passengers = flight.passengerInfo;
+                break;
         }
     }
     return {
         type: "PASSENGER_LIST",
         payLoad: {
             flightName: flight.name,
+            flightNo: flight.number,
             passengers: passengers || flight.passengerInfo
         }
     }

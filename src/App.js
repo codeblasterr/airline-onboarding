@@ -15,7 +15,7 @@ const App = props => {
   return (
     <Router>
       <div className="App">
-        <Navigation {...this.props} />
+        <Navigation {...props} />
         <main>
           <Route path="/" exact component={Home} />
           <Route path="/flights/check-in" component={CheckIn} />

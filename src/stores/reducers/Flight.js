@@ -1,5 +1,6 @@
 const initialVals = {
   flightName: '',
+  flightNo: '',
   passengers: [],
   flightWithPassenger : {}
 };

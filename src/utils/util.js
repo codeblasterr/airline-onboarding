@@ -4,8 +4,8 @@ export const authCheck = (isSignedIn, history) => {
   }
 };
 
-export const getSearchParams = () => {
-  let search = this.props.location.search;
+export const getSearchParams = (param) => {
+  let search = param;
   let searchObj = search
     ? JSON.parse(
         '{"' +

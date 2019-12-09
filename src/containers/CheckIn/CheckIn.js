@@ -29,13 +29,14 @@ class CheckIn extends Component {
     console.log(value);
   };
   componentDidMount() {
-    authCheck(this.props.isSignedIn, this.props.histort);
+    authCheck(this.props.isSignedIn, this.props.history);
     let flightNo = this.getFlightNo();
     this.props.setPassengerList(flightNo);
   }
   render() {
     return (
       <>
+        <h1>{this.props.flightName}({this.props.flightNo})</h1>
         <h1>Passengers</h1>
         <select name="passengerType" onChange={this.handleChange}>
           <option value="">Select Filter Type</option>
@@ -47,6 +48,7 @@ class CheckIn extends Component {
           {...this.props}
           checkIn={true}
           passengers={[...this.props.pasengrs]}
+          flightNo={this.getFlightNo()}
         />
       </>
     );
@@ -56,7 +58,9 @@ class CheckIn extends Component {
 const mapStateToProps = state => {
   return {
     pasengrs: state.pasngrs.passengers,
-    isSignedIn: state.auth.isSignedIn
+    isSignedIn: state.auth.isSignedIn,
+    flightName: state.pasngrs.flightName,
+    flightNo: state.pasngrs.flightNo
   };
 };
 

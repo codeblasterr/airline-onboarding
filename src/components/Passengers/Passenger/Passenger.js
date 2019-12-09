@@ -49,15 +49,13 @@ const passenger = (props) => {
                     <Batch status={props.passenger.checkedIn} />
                 </div>
             </div>
-            {!props.checkIn ? 
-                <div className="container flex-end">
-                    <button className="btn-filled" onClick={
-                        () => {
-                            props.history.push(`/add-or-update-user?flightNo=${props.flightNo}&passengerId=${props.passenger.id}`)
-                        }
-                    }>Edit</button>
-                </div> : ""
-            }
+            <div className="container flex-end">
+                <button className="btn-filled" onClick={
+                    () => {
+                        props.history.push(`/add-or-update-user?flightNo=${props.flightNo}&passengerId=${props.passenger.id}`)
+                    }
+                }>Edit</button>
+            </div>
         </div>
     );
 }
