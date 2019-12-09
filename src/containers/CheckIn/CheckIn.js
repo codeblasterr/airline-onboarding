@@ -7,7 +7,7 @@ import { authCheck } from "./../../utils/util";
 
 class CheckIn extends Component {
   getFlightNo() {
-    let search = this.props.location.search || "{}";
+    let search = this.props.location.search;
     let searchObj = search
       ? JSON.parse(
           '{"' +
