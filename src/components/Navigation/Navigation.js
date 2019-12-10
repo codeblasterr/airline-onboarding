@@ -6,21 +6,35 @@ import { getSearchParams } from "./../../utils/util";
 import "./Navigation.scss";
 
 const Navigation = props => {
-  let searchParams = props.location && props.location.search ? props.location.search : "";
-  let search = getSearchParams(searchParams);
+  let search = getSearchParams();
+  let path = window.location.path;
   let additionalMenu = null;
-  if (search.flightNo && search.passengerId) {
+  if (path !== "/" && search.flightNo) {
     additionalMenu = (
       <>
         <li>
-          <NavLink to="/flights/check-in">Check-in</NavLink>
+          <NavLink to={`/flights/check-in?flightNo=${search.flightNo}`}>
+            Check-in
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/flights/in-flight">In Flights</NavLink>
+          <NavLink to={`/flights/in-flight?flightNo=${search.flightNo}`}>
+            In Flights
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/add-or-update-user">Add Or Update User</NavLink>
-        </li>
+        {search.passengerId ? (
+          <li>
+            <NavLink
+              to={`/add-or-update-user?flightNo=${
+                search.flightNo
+              }&passengerId=${search.passengerId}`}
+            >
+              Add Or Update User
+            </NavLink>
+          </li>
+        ) : (
+          ""
+        )}
       </>
     );
   }
