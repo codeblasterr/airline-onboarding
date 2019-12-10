@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Passengers from "./../../components/Passengers/Passengers";
 import {flight} from '../../stores/actions/Flight';
-import {authCheck} from './../../utils/util';
+import {authCheck, getSearchParams} from './../../utils/util';
 
 class InFlight extends Component {
     getFlightNo() {
@@ -26,19 +26,27 @@ class InFlight extends Component {
         this.props.setPassengerList(flightNo);
     }
     render () {
-        return (
+        const search = getSearchParams();
+        let elem = <div><h1>Please Select the Flight. Go to Home page to select the flight.</h1></div>
+        if(search.flightNo !== "undefined") {
+          elem = (
             <>
-                <h1>Passengers</h1>
-                <Passengers {...this.props} checkIn={false} passengers={[...this.props.pasengrs]} flightNo={this.getFlightNo()}/>
+              <h1>{this.props.flightName}({this.props.flightNo})</h1>
+              <h1>Passengers</h1>
+              <Passengers {...this.props} checkIn={false} passengers={[...this.props.pasengrs]} flightNo={this.getFlightNo()}/>
             </>
-        );
+          );
+        }
+        return elem;
     }
 }
 
 const mapStateToProps = state => {
     return {
       pasengrs: state.pasngrs.passengers,
-      isSignedIn: state.auth.isSignedIn
+      isSignedIn: state.auth.isSignedIn,
+      flightName: state.pasngrs.flightName,
+      flightNo: state.pasngrs.flightNo
     };
   };
   
