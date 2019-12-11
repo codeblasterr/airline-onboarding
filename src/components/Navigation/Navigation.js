@@ -19,19 +19,15 @@ const Navigation = props => {
           In Flights
         </NavLink>
       </li>
-      {search.passengerId ? (
-        <li>
-          <NavLink
-            to={`/add-or-update-user?flightNo=${
-              search.flightNo
-            }&passengerId=${search.passengerId}`}
-          >
-            Add Or Update User
-          </NavLink>
-        </li>
-      ) : (
-        ""
-      )}
+      <li>
+        <NavLink
+          to={`/add-or-update-user?flightNo=${search.flightNo}&passengerId=${
+            search.passengerId
+          }`}
+        >
+          Add Or Update User
+        </NavLink>
+      </li>
     </>
   );
   return (

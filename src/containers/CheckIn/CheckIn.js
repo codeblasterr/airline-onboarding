@@ -35,11 +35,17 @@ class CheckIn extends Component {
   }
   render() {
     const search = getSearchParams();
-    let elem = <div><h1>Please Select the Flight. Go to Home page to select the flight.</h1></div>
-    if(search.flightNo !== "undefined") {
+    let elem = (
+      <div className="errMsgCont">
+        <h1>Please Select the Flight. Go to Home page to select the flight.</h1>
+      </div>
+    );
+    if (search.flightNo !== "undefined") {
       elem = (
         <>
-          <h1>{this.props.flightName}({this.props.flightNo})</h1>
+          <h1>
+            {this.props.flightName}({this.props.flightNo})
+          </h1>
           <h1>Passengers</h1>
           <select name="passengerType" onChange={this.handleChange}>
             <option value="">Select Filter Type</option>

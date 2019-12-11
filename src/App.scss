@@ -1,14 +1,26 @@
+
+$color-white : white;
+$color-blue : blue;
+$color-green: green;
+$color-red: red;
+
+body * {
+    box-sizing: border-box;
+    font-size: 14px;
+}
 .App {
     margin: 0 auto;
     width: 80%;
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
 main {
     align-items: stretch;
     flex-grow: 1;
     min-height: 78vh;
+    display: flex;
 }
 
 input, select {
@@ -17,27 +29,23 @@ input, select {
     width: 100%;
     outline: none;
     margin: 5px 0;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid $color-blue;
     &.error {
-        border-bottom: 1px solid red;
+        border-bottom: 1px solid $color-red;
     }
     &.success {
-        border-bottom: 1px solid green;
+        border-bottom: 1px solid $color-green;
     }
     &:focus {
-        border-bottom: 2px solid blue;
+        border-bottom: 2px solid $color-blue;
     }
-}
-
-body * {
-    box-sizing: border-box;
-    font-size: 14px;
 }
 .card {
     margin: 20px auto;
     border-radius: 5px;
     border: 2px solid #efefef;
     padding: 10px;
+    width: 100%;
 }
 
 .card-md {
@@ -63,20 +71,20 @@ body * {
 
 .btn-outline {
     @extend .btn;
-    background-color: white;
-    border: 1px solid blue;
+    background-color: $color-white;
+    border: 1px solid $color-blue;
     color: inherit;
 }
 
 .btn-filled {
     @extend .btn;
-    background-color: blue;
-    color: white;
+    background-color: $color-blue;
+    color: $color-white;
     border: none;
 }
 
 .error {
-    color: red;
+    color: $color-red;
 }
 
 .flex-container {
@@ -95,4 +103,11 @@ body * {
 
 .container {
     margin: 10px 0;
+}
+
+.errMsgCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
