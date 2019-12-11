@@ -4,8 +4,8 @@ export const authCheck = (isSignedIn, history) => {
   }
 };
 
-export const getSearchParams = () => {
-  let search = window.location.search;
+export const getSearchParams = searchParam => {
+  let search = searchParam || window.location.search;
   let searchObj = search
     ? JSON.parse(
         '{"' +

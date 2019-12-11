@@ -18,23 +18,9 @@ function getValidationCls(errors, fieldName) {
 }
 
 class AddOrUpdateUser extends Component {
-  getQueryParams() {
-    let search = this.props.location.search || "{}";
-    let searchObj = JSON.parse(
-      '{"' +
-        decodeURI(search)
-          .replace("?", "")
-          .replace(/"/g, '\\"')
-          .replace(/&/g, '","')
-          .replace(/=/g, '":"') +
-        '"}'
-    );
-    console.log("Flight No:", searchObj);
-    return searchObj || "";
-  }
   componentDidMount() {
     authCheck(this.props.isSignedIn, this.props.history);
-    let params = this.getQueryParams();
+    let params = getSearchParams(this.props.location.search);
     this.props.setFlightWithPassenger(params.flightNo, params.passengerId);
   }
   render() {
@@ -90,7 +76,7 @@ class AddOrUpdateUser extends Component {
               specialMeals: Yup.bool()
             })}
             onSubmit={(values, { setSubmitting }) => {
-              let params = this.getQueryParams();
+              let params = getSearchParams();
               updatePassenger(params.flightNo, params.passengerId, values);
               this.props.history.push(
                 `/flights/in-flight?flightNo=${params.flightNo}&passengerId=${
