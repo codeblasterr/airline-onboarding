@@ -7,6 +7,9 @@
 
 .cls_seatRow {
     display: flex;
+    flex-basis: 80%;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .cls_seat {
@@ -14,4 +17,7 @@
     border: 1px solid;
     font-weight: bold;
     padding: 3px;
+    margin: 3px;
+    text-align: center;
+    cursor: pointer;
 }

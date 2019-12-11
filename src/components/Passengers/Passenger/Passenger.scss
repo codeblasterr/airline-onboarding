@@ -16,3 +16,11 @@
     display: flex;
 }
 
+@media(max-width: 500px) {
+    .pasngr-list-cont{
+        flex-direction: column;
+    }
+    .pasngr-item {
+        margin: 5px 0px;
+    }
+}
