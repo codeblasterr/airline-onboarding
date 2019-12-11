@@ -1,16 +1,16 @@
 const initialVal = {
-    isSignedIn: false
-}
+  isSignedIn: true
+};
 
 const authReducer = (state = initialVal, action) => {
-    switch (action.type) {
-        case "SIGNIN":
-            return {
-                isSignedIn: action.payLoad
-            }
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case "SIGNIN":
+      return {
+        isSignedIn: action.payLoad
+      };
+    default:
+      return state;
+  }
+};
 
 export default authReducer;
