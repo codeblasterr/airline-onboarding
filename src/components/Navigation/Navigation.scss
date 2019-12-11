@@ -1,3 +1,5 @@
+@import './../../App.scss';
+
 @mixin acitiveLink{
     color: orange;
     text-decoration: underline;
@@ -7,19 +9,33 @@ nav {
     ul {
         padding: 0;
         margin: 0;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
     }
     a {
         text-decoration: none;
-        color: white;
+        color: $color-white;
         &.active {
             @include acitiveLink();
         }
     }
     li {
-        margin: 20px;
-        display: inline-block;
+        margin: 5px;
+        list-style-type: none;
+        border: 1px solid $color-white;
+        padding: 20px;
+        flex: 1;
     }
     li a:hover {
         @include acitiveLink();
+    }
+}
+
+@media(max-width: 500px) {
+    nav {
+        ul {
+            flex-direction: column;
+        }
     }
 }
