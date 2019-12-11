@@ -1,0 +1,17 @@
+.cls_seatCont {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid;
+    padding: 5px;
+}
+
+.cls_seatRow {
+    display: flex;
+}
+
+.cls_seat {
+    flex: 1;
+    border: 1px solid;
+    font-weight: bold;
+    padding: 3px;
+}

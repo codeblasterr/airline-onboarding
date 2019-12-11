@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Passengers from "./../../components/Passengers/Passengers";
 import { flight } from "../../stores/actions/Flight";
 import { authCheck, getSearchParams } from "./../../utils/util";
+import Seats from "./../../components/Seats/Seats"
 
 class CheckIn extends Component {
   getFlightNo() {
@@ -46,6 +47,7 @@ class CheckIn extends Component {
           <h1>
             {this.props.flightName}({this.props.flightNo})
           </h1>
+          <Seats />
           <h1>Passengers</h1>
           <select name="passengerType" onChange={this.handleChange}>
             <option value="">Select Filter Type</option>
