@@ -49,7 +49,7 @@ export const updatePassenger = (flightId, passengerId, values) => {
 
 export const flight = (flightNo, filterParam) => {
   let flight = getFlight(flightNo);
-  let passengers = null;
+  let passengers = [];
   if (filterParam) {
     switch (filterParam) {
       case "checkedIn":
@@ -75,9 +75,9 @@ export const flight = (flightNo, filterParam) => {
   return {
     type: "PASSENGER_LIST",
     payLoad: {
-      flightName: flight.name,
-      flightNo: flight.number,
-      passengers: passengers || flight.passengerInfo
+      flightName: flight.name || "",
+      flightNo: flight.number || "",
+      passengers: flight.passengerInfo || passengers
     }
   };
 };

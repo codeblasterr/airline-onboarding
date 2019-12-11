@@ -47,8 +47,8 @@ class AddOrUpdateUser extends Component {
     let elem = (
       <div className="errMsgCont">
         <h1>
-          Please Select the Flight & Passenger. Go to Home page to select the
-          flight.
+          Please Select the Flight & Passenger. Go to Check-In page or In-Flight page to select the
+          passenger.
         </h1>
       </div>
     );
