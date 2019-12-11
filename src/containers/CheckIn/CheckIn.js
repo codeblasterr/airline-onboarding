@@ -4,21 +4,21 @@ import { connect } from "react-redux";
 import Passengers from "./../../components/Passengers/Passengers";
 import { flight } from "../../stores/actions/Flight";
 import { authCheck, getSearchParams } from "./../../utils/util";
-import Seats from "./../../components/Seats/Seats"
+import Seats from "./../../containers/Seats/Seats"
 
 class CheckIn extends Component {
   getFlightNo() {
     let search = this.props.location.search;
     let searchObj = search
       ? JSON.parse(
-          '{"' +
-            decodeURI(search)
-              .replace("?", "")
-              .replace(/"/g, '\\"')
-              .replace(/&/g, '","')
-              .replace(/=/g, '":"') +
-            '"}'
-        )
+        '{"' +
+        decodeURI(search)
+          .replace("?", "")
+          .replace(/"/g, '\\"')
+          .replace(/&/g, '","')
+          .replace(/=/g, '":"') +
+        '"}'
+      )
       : {};
     console.log("Flight No:", searchObj);
     return searchObj.flightNo || "";

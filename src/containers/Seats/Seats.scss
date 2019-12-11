@@ -1,0 +1,12 @@
+.cls_seatCont {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  padding: 5px;
+}
+
+.cls_seatRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
