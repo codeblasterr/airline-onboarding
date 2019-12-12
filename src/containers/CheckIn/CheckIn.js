@@ -2,27 +2,43 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Passengers from "./../../components/Passengers/Passengers";
-import { flight } from "../../stores/actions/Flight";
+import { flight, updatePassenger } from "../../stores/actions/Flight";
 import { authCheck, getSearchParams } from "./../../utils/util";
-import Seats from "./../../containers/Seats/Seats"
+import Seats from "./../../containers/Seats/Seats";
 
 class CheckIn extends Component {
   getFlightNo() {
     let search = this.props.location.search;
     let searchObj = search
       ? JSON.parse(
-        '{"' +
-        decodeURI(search)
-          .replace("?", "")
-          .replace(/"/g, '\\"')
-          .replace(/&/g, '","')
-          .replace(/=/g, '":"') +
-        '"}'
-      )
+          '{"' +
+            decodeURI(search)
+              .replace("?", "")
+              .replace(/"/g, '\\"')
+              .replace(/&/g, '","')
+              .replace(/=/g, '":"') +
+            '"}'
+        )
       : {};
     console.log("Flight No:", searchObj);
     return searchObj.flightNo || "";
   }
+  getPassengerIdFromSeat = seatNo => {
+    let passenger = this.props.pasengrs.filter(
+      passenger => passenger.seatNo === seatNo.toLowerCase()
+    );
+    return passenger[0].id;
+  };
+  checkinPassenger = (elem, seatNo) => {
+    let params = getSearchParams();
+    let isSelect = !elem.target.classList.contains("active");
+    let values = {
+      checkedIn: isSelect
+    };
+    let passengerId = this.getPassengerIdFromSeat(seatNo);
+    this.props.updatePassenger(params.flightNo, passengerId, values);
+    this.props.setPassengerList(params.flightNo);
+  };
   handleChange = event => {
     let value = event.target.value;
     let flightNo = this.getFlightNo();
@@ -47,7 +63,10 @@ class CheckIn extends Component {
           <h1>
             {this.props.flightName}({this.props.flightNo})
           </h1>
-          <Seats />
+          <Seats
+            checkInPassenger={this.checkinPassenger}
+            checkedInSeats={[...this.props.checkedInSeats]}
+          />
           <h1>Passengers</h1>
           <select name="passengerType" onChange={this.handleChange}>
             <option value="">Select Filter Type</option>
@@ -73,14 +92,17 @@ const mapStateToProps = state => {
     pasengrs: state.pasngrs.passengers,
     isSignedIn: state.auth.isSignedIn,
     flightName: state.pasngrs.flightName,
-    flightNo: state.pasngrs.flightNo
+    flightNo: state.pasngrs.flightNo,
+    checkedInSeats: state.pasngrs.checkedInSeats
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     setPassengerList: (flightNo, filterParam) =>
-      dispatch(flight(flightNo, filterParam))
+      dispatch(flight(flightNo, filterParam)),
+    updatePassenger: (flightNo, filterParam, values) =>
+      dispatch(updatePassenger(flightNo, filterParam, values))
   };
 };
 
