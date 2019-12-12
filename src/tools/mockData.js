@@ -60,7 +60,7 @@ export const mockData = {
                     "id": 123,
                     "name": "Xavi",
                     "Age": 25,
-                    "seatNo": "c8",
+                    "seatNo": "a1",
                     "specialMeals": true,
                     "withInfant": false,
                     "requireWheelChair": false,
