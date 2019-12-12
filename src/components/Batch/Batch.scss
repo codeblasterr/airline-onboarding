@@ -1,6 +1,8 @@
+@import './../../constants.scss';
+
 .batch {
     border-radius: 2px;
-    color: white;
+    color: $color-white;
     padding: 5px;
     font-size: 75%;
 }
@@ -12,5 +14,5 @@
 
 .batch-failiure {
     @extend .batch;
-    background-color: red;
+    background-color: $color-red;
 }

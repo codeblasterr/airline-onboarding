@@ -72,7 +72,8 @@ export const flight = (flightNo, filterParam) => {
         break;
     }
   }
-  let checkedInSeats = passengers.filter(passenger => {
+  let passengerList = passengers.length ? passengers : flight.passengerInfo;
+  let checkedInSeats = passengerList.filter(passenger => {
     if (passenger.checkedIn) return passenger.seatNo;
   });
   return {

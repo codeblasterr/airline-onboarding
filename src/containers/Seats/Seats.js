@@ -20,7 +20,9 @@ class Seats extends Component {
           <Seat
             key={seatNo}
             seatNo={seatNo}
-            active={mapStateToProps.checkedInSeats.includes(seatNo)}
+            active={this.props.checkedInSeats.includes(
+              seatNo.toLocaleLowerCase()
+            )}
             onClick={() => this.checkinPassenger(seatNo)}
           />
         );

@@ -1,6 +1,8 @@
+@import './../../constants.scss';
+
 .footerCont {
-    background-color: #22abbd;
-    color: white;
+    background-color: $color-light-blue;
+    color: $color-white;
     text-align: center;
     padding: 20px;
 }
