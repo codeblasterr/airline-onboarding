@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Seat from "../../components/Seat/Seat";
 
 import "./Seats.scss";
 
 class Seats extends Component {
-  checkinPassenger = (seatNo) => {
+  checkinPassenger = seatNo => {
     console.log(seatNo);
-  }
+  };
   render() {
     let seats = [];
     let alpha = ["A", "B", "C"];
@@ -16,13 +17,34 @@ class Seats extends Component {
       for (let index = 1; index <= 10; ++index) {
         let seatNo = alpha[counter] + index;
         row.push(
-          <Seat key={seatNo} seatNo={seatNo} onClick={() => this.checkinPassenger(seatNo)} />
+          <Seat
+            key={seatNo}
+            seatNo={seatNo}
+            active={mapStateToProps.checkedInSeats.includes(seatNo)}
+            onClick={() => this.checkinPassenger(seatNo)}
+          />
         );
       }
       seats.push(<div className="cls_seatRow">{row}</div>);
     }
     return <div className="cls_seatCont">{seats}</div>;
   }
+}
+
+const mapStateToProps = state => {
+  return {
+    checkedInSeats: state.pasngrs.checkedInSeats
+  };
 };
 
-export default Seats;
+/* const mapDispatchToProps = dispatch => {
+  return {
+    setPassengerList: (flightNo, filterParam) =>
+      dispatch(flight(flightNo, filterParam))
+  };
+}; */
+
+export default connect(
+  mapStateToProps,
+  null
+)(Seats);

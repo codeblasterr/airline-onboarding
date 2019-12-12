@@ -72,12 +72,16 @@ export const flight = (flightNo, filterParam) => {
         break;
     }
   }
+  let checkedInSeats = passengers.filter(passenger => {
+    if (passenger.checkedIn) return passenger.seatNo;
+  });
   return {
     type: "PASSENGER_LIST",
     payLoad: {
       flightName: flight.name || "",
       flightNo: flight.number || "",
-      passengers: flight.passengerInfo || passengers
+      passengers: flight.passengerInfo || passengers,
+      checkedInSeats: checkedInSeats || []
     }
   };
 };
