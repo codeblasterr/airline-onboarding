@@ -73,9 +73,11 @@ export const flight = (flightNo, filterParam) => {
     }
   }
   let passengerList = passengers.length ? passengers : flight.passengerInfo;
-  let checkedInSeats = passengerList.filter(passenger => {
-    if (passenger.checkedIn) return passenger.seatNo;
-  });
+  let checkedInSeats = passengerList
+    .filter(passenger => passenger.checkedIn)
+    .map(passenger => passenger.seatNo);
+
+  console.log("checkedInSeats: ", checkedInSeats);
   return {
     type: "PASSENGER_LIST",
     payLoad: {
