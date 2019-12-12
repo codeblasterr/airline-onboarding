@@ -3,19 +3,29 @@ import { connect } from "react-redux";
 
 import Seat from "../../components/Seat/Seat";
 import { getSearchParams } from "./../../utils/util";
-import { updatePassenger } from "./../../stores/actions/Flight";
+import {
+  updatePassenger,
+  setFlightWithPassenger
+} from "./../../stores/actions/Flight";
 
 import "./Seats.scss";
 
 class Seats extends Component {
-  checkinPassenger = (seatNo, elem) => {
+  getPassengerIdFromSeat = seatNo => {
+    let passenger = this.props.passengers.filter(
+      passenger => passenger.seatNo === seatNo.toLowerCase()
+    );
+    return passenger[0].id;
+  };
+  checkinPassenger = (elem, seatNo) => {
     let params = getSearchParams();
     let isSelect = !elem.target.classList.contains("active");
     let values = {
       checkedIn: isSelect
     };
-
-    this.props.updatePassenger(params.flightNo, params.passengerId, values);
+    let passengerId = this.getPassengerIdFromSeat(seatNo);
+    this.props.updatePassenger(params.flightNo, passengerId, values);
+    this.props.setFlightWithPassenger(params.flightNo);
   };
   render() {
     let seats = [];
@@ -29,7 +39,7 @@ class Seats extends Component {
             key={seatNo}
             seatNo={seatNo}
             active={this.props.checkedInSeats.includes(seatNo.toLowerCase())}
-            onClick={() => this.checkinPassenger(seatNo)}
+            onClick={elem => this.checkinPassenger(elem, seatNo)}
           />
         );
       }
@@ -41,14 +51,18 @@ class Seats extends Component {
 
 const mapStateToProps = state => {
   return {
-    checkedInSeats: state.pasngrs.checkedInSeats
+    checkedInSeats: state.pasngrs.checkedInSeats,
+    passengers: state.pasngrs.passengers
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     updatePassenger: (flightNo, filterParam, values) =>
-      dispatch(updatePassenger(flightNo, filterParam, values))
+      dispatch(updatePassenger(flightNo, filterParam, values)),
+    setFlightWithPassenger: flightNo => {
+      dispatch(setFlightWithPassenger(flightNo));
+    }
   };
 };
 
