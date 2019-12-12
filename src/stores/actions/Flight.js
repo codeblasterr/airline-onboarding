@@ -1,5 +1,11 @@
 import { mockData } from "../../tools/mockData";
 
+const getValue = (value, defaultValue) => {
+  if (typeof value !== "undefined" && value !== null && value !== "")
+    return value;
+  return defaultValue;
+};
+
 const getFlight = flightNo => {
   let flightInfo = mockData.flightInfo || [];
   let flight = flightInfo.filter(
@@ -29,12 +35,16 @@ const updatePassengerData = (flightId, passengerId, value) => {
   let passengerIndex = getPassengerIndex(flightId, passengerId);
   let passenger =
     mockData.flightInfo[flightIndex].passengerInfo[passengerIndex];
-  passenger.name = value.name;
-  passenger.seatNo = value.seatNo;
-  passenger.address = value.address;
-  passenger.passport = value.passportNo;
-  passenger.ancilaryServices = value.ancilaryServices;
-  passenger.specialMeals = value.specialMeals;
+  passenger.name = getValue(value.name, passenger.name);
+  passenger.seatNo = getValue(value.seatNo, passenger.seatNo);
+  passenger.address = getValue(value.address, passenger.address);
+  passenger.passport = getValue(value.passportNo, passenger.passport);
+  passenger.ancilaryServices = getValue(
+    value.ancilaryServices,
+    passenger.ancilaryServices
+  );
+  passenger.specialMeals = getValue(value.specialMeals, passenger.specialMeals);
+  passenger.checkedIn = getValue(value.checkedIn, passenger.checkedIn);
   alert("Passenger information updated");
 };
 

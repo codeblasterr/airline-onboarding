@@ -2,12 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Seat from "../../components/Seat/Seat";
+import { getSearchParams } from "./../../utils/util";
+import { updatePassenger } from "./../../stores/actions/Flight";
 
 import "./Seats.scss";
 
 class Seats extends Component {
-  checkinPassenger = seatNo => {
-    console.log(seatNo);
+  checkinPassenger = (seatNo, elem) => {
+    let params = getSearchParams();
+    let isSelect = !elem.target.classList.contains("active");
+    let values = {
+      checkedIn: isSelect
+    };
+
+    this.props.updatePassenger(params.flightNo, params.passengerId, values);
   };
   render() {
     let seats = [];
@@ -37,14 +45,14 @@ const mapStateToProps = state => {
   };
 };
 
-/* const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    setPassengerList: (flightNo, filterParam) =>
-      dispatch(flight(flightNo, filterParam))
+    updatePassenger: (flightNo, filterParam, values) =>
+      dispatch(updatePassenger(flightNo, filterParam, values))
   };
-}; */
+};
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Seats);
