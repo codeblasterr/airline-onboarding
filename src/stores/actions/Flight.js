@@ -82,7 +82,7 @@ export const flight = (flightNo, filterParam) => {
         break;
     }
   }
-  let passengerList = passengers.length ? passengers : flight.passengerInfo;
+  let passengerList = passengers.length ? passengers : (flight.passengerInfo ? flight.passengerInfo : []);
   let checkedInSeats = passengerList
     .filter(passenger => passenger.checkedIn)
     .map(passenger => passenger.seatNo);
