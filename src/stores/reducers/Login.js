@@ -2,6 +2,7 @@ const initialVal = {
   isSignedIn: true
 };
 
+
 const authReducer = (state = initialVal, action) => {
   switch (action.type) {
     case "SIGNIN":
