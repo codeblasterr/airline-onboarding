@@ -1,7 +1,6 @@
 const initialVal = {
-  isSignedIn: true
+  isSignedIn: false
 };
-
 
 const authReducer = (state = initialVal, action) => {
   switch (action.type) {
